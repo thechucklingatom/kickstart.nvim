@@ -209,7 +209,9 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 vim.cmd.colorscheme "dracula"
+vim.opt.foldmethod = "indent"
 vim.keymap.set('n', '<leader>t', require('neo-tree').show, { desc = 'Show neo-tree window' })
+vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent'})
 
 -- Set highlight on search
 vim.o.hlsearch = false
