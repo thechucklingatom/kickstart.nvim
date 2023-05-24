@@ -210,6 +210,7 @@ require('lazy').setup({
 
 vim.cmd.colorscheme "dracula"
 vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99
 vim.keymap.set('n', '<leader>t', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent'})
 
