@@ -211,8 +211,14 @@ require('lazy').setup({
 vim.cmd.colorscheme "dracula"
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
-vim.keymap.set('n', '<leader>t', require('neo-tree').show, { desc = 'Show neo-tree window' })
+vim.opt.splitbelow = true
+vim.keymap.set('n', '<leader>t', ':split | resize 20 | term<CR>', { desc = 'open terminal split' })
+vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent'})
+vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands'})
+vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands'})
+vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { desc = 'allow escaping terminal with standard window commands'})
+vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { desc = 'allow escaping terminal with standard window commands'})
 
 -- Set highlight on search
 vim.o.hlsearch = false
