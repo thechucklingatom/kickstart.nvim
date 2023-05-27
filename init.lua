@@ -208,10 +208,12 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- my custom stuff
 vim.cmd.colorscheme "dracula"
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
+vim.opt.scrolloff = 8
 vim.keymap.set('n', '<leader>t', ':split | resize 20 | term<CR>', { desc = 'open terminal split' })
 vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent'})
@@ -219,6 +221,10 @@ vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping term
 vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands'})
 vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { desc = 'allow escaping terminal with standard window commands'})
 vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { desc = 'allow escaping terminal with standard window commands'})
+vim.keymap.set('n', 'n', 'nzz', { desc = 'automatically center text when searching' })
+vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searching' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'automatically center text when jumping' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
