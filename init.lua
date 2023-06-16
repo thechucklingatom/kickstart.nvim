@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -108,7 +108,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -122,7 +122,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -131,10 +132,10 @@ require('lazy').setup({
 
   {
     "navarasu/onedark.nvim",
-     priority = 1000,
-     config = function()
+    priority = 1000,
+    config = function()
       vim.cmd.colorscheme 'onedark'
-     end,
+    end,
   },
 
   {
@@ -163,7 +164,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -216,11 +217,11 @@ vim.opt.splitbelow = true
 vim.opt.scrolloff = 8
 vim.keymap.set('n', '<leader>t', ':split | resize 20 | term<CR>', { desc = 'open terminal split' })
 vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
-vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent'})
-vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands'})
-vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands'})
-vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { desc = 'allow escaping terminal with standard window commands'})
-vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { desc = 'allow escaping terminal with standard window commands'})
+vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent' })
+vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { desc = 'allow escaping terminal with standard window commands' })
 vim.keymap.set('n', 'n', 'nzz', { desc = 'automatically center text when searching' })
 vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searching' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
