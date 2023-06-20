@@ -1,8 +1,9 @@
 -- File: lua/custom/plugins/dracula.lua
 
 return {
-  "Mofiqul/dracula.nvim",
+  "doums/darcula",
+  priority = 1000,
   config = function()
-    require("dracula").setup {}
+    vim.cmd.colorscheme 'darcula'
   end,
 }

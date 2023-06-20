@@ -130,13 +130,13 @@ require('lazy').setup({
     },
   },
 
-  {
+  --[[{
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'onedark'
     end,
-  },
+  },]]
 
   {
     -- Set lualine as statusline
@@ -145,7 +145,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'iceberg_dark',
         component_separators = '|',
         section_separators = '',
       },
@@ -210,7 +210,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- my custom stuff
-vim.cmd.colorscheme "dracula"
+vim.cmd.colorscheme "darcula"
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
