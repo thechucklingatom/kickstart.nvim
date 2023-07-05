@@ -163,6 +163,11 @@ require('lazy').setup({
     },
   },
 
+  -- prettier test, will move to it's own file once I get it working
+  {
+    'prettier/vim-prettier'
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim',         opts = {} },
 
@@ -226,6 +231,7 @@ vim.keymap.set('n', 'n', 'nzz', { desc = 'automatically center text when searchi
 vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searching' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'automatically center text when jumping' })
+vim.keymap.set('n', '<leader>cp', vim.cmd.Prettier, { desc = '[C]ode [P]rettier' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
