@@ -220,7 +220,7 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
 vim.opt.scrolloff = 8
-vim.keymap.set('n', '<leader>t', ':split | resize 20 | term<CR>', { desc = 'open terminal split' })
+vim.keymap.set('n', '<leader>ot', ':split | resize 20 | term<CR>', { desc = '[o]pen [t]erminal split' })
 vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent' })
 vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands' })
@@ -232,6 +232,11 @@ vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searchi
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'automatically center text when jumping' })
 vim.keymap.set('n', '<leader>cp', vim.cmd.Prettier, { desc = '[C]ode [P]rettier' })
+vim.keymap.set('n', '<leader>tn', vim.cmd.TestNearest, { desc = '[T]est [N]earest' })
+vim.keymap.set('n', '<leader>tf', vim.cmd.TestFile, { desc = '[T]est [F]ile' })
+vim.keymap.set('n', '<leader>ta', vim.cmd.TestSuite, { desc = '[T]est [a]ll' })
+vim.keymap.set('n', '<leader>tl', vim.cmd.TestLast, { desc = '[T]est [L]ast' })
+vim.keymap.set('n', '<leader>tv', vim.cmd.TestVist, { desc = '[T]est [V]isit' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
