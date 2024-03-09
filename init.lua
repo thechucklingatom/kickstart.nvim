@@ -196,6 +196,16 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  -- copilot test
+  {
+    'github/copilot.vim'
+  },
+
+  -- add f# debugging
+  {
+    'ionide/Ionide-vim'
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -237,6 +247,11 @@ vim.keymap.set('n', '<leader>tf', vim.cmd.TestFile, { desc = '[T]est [F]ile' })
 vim.keymap.set('n', '<leader>ta', vim.cmd.TestSuite, { desc = '[T]est [a]ll' })
 vim.keymap.set('n', '<leader>tl', vim.cmd.TestLast, { desc = '[T]est [L]ast' })
 vim.keymap.set('n', '<leader>tv', vim.cmd.TestVist, { desc = '[T]est [V]isit' })
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -545,3 +560,11 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+local autocmd = vim.api.nvim_create_autocmd
+
+-- dont list quickfix buffers
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.fs,*.fsx,*.fsi",
+  command = [[set filetype=fsharp]]
+})
