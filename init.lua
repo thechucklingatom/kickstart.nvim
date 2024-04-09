@@ -230,6 +230,7 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
 vim.opt.scrolloff = 8
+vim.opt.tabstop = 4
 vim.keymap.set('n', '<leader>ot', ':split | resize 20 | term<CR>', { desc = '[o]pen [t]erminal split' })
 vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent' })
