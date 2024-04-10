@@ -76,6 +76,7 @@ Kickstart Guide:
     Feel free to delete them once you know what you're doing, but they should serve as a guide
     for when you are first encountering a few different constructs in your Neovim config.
 
+
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 
 I hope you enjoy your Neovim journey,
@@ -83,6 +84,7 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
+
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -96,13 +98,14 @@ vim.g.have_nerd_font = false
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
+
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -257,6 +260,7 @@ require('lazy').setup({
       },
     },
   },
+
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -634,7 +638,6 @@ require('lazy').setup({
       },
     },
   },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -872,3 +875,51 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+local autocmd = vim.api.nvim_create_autocmd
+
+-- dont list quickfix buffers
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.fs,*.fsx,*.fsi",
+  command = [[set filetype=fsharp]]
+})
+        
+-- copilot test
+{
+  'github/copilot.vim'
+},
+
+-- add f# debugging
+{
+  'ionide/Ionide-vim'
+},
+
+-- my custom stuff
+vim.cmd.colorscheme "darcula"
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99
+vim.opt.splitbelow = true
+vim.opt.scrolloff = 8
+vim.opt.tabstop = 4
+vim.keymap.set('n', '<leader>ot', ':split | resize 20 | term<CR>', { desc = '[o]pen [t]erminal split' })
+vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
+vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent' })
+vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>k', '<C-\\><C-n><C-w>k', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('t', '<C-w>l', '<C-\\><C-n><C-w>l', { desc = 'allow escaping terminal with standard window commands' })
+vim.keymap.set('n', 'n', 'nzz', { desc = 'automatically center text when searching' })
+vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searching' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'automatically center text when jumping' })
+vim.keymap.set('n', '<leader>cp', vim.cmd.Prettier, { desc = '[C]ode [P]rettier' })
+vim.keymap.set('n', '<leader>tn', vim.cmd.TestNearest, { desc = '[T]est [N]earest' })
+vim.keymap.set('n', '<leader>tf', vim.cmd.TestFile, { desc = '[T]est [F]ile' })
+vim.keymap.set('n', '<leader>ta', vim.cmd.TestSuite, { desc = '[T]est [a]ll' })
+vim.keymap.set('n', '<leader>tl', vim.cmd.TestLast, { desc = '[T]est [L]ast' })
+vim.keymap.set('n', '<leader>tv', vim.cmd.TestVist, { desc = '[T]est [V]isit' })
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
