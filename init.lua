@@ -85,7 +85,6 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -93,7 +92,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -260,7 +259,15 @@ require('lazy').setup({
       },
     },
   },
+  -- copilot test
+  {
+    'github/copilot.vim',
+  },
 
+  -- add f# debugging
+  {
+    'ionide/Ionide-vim',
+  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -648,7 +655,7 @@ require('lazy').setup({
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
+          -- Removeson: the below condition to re-enable on windows.
           if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
             return
           end
@@ -841,7 +848,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
 
@@ -850,7 +857,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -879,30 +886,19 @@ require('lazy').setup({
 local autocmd = vim.api.nvim_create_autocmd
 
 -- dont list quickfix buffers
-autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.fs,*.fsx,*.fsi",
-  command = [[set filetype=fsharp]]
+autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.fs,*.fsx,*.fsi',
+  command = [[set filetype=fsharp]],
 })
-        
--- copilot test
-{
-  'github/copilot.vim'
-},
-
--- add f# debugging
-{
-  'ionide/Ionide-vim'
-},
 
 -- my custom stuff
-vim.cmd.colorscheme "darcula"
-vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
 vim.opt.scrolloff = 8
 vim.opt.tabstop = 4
 vim.keymap.set('n', '<leader>ot', ':split | resize 20 | term<CR>', { desc = '[o]pen [t]erminal split' })
-vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
+-- vim.keymap.set('n', '<leader>ft', require('neo-tree').show, { desc = 'Show neo-tree window' })
 vim.keymap.set('n', '<leader>T', vim.cmd.TransparentToggle, { desc = 'toggle BG transparent' })
 vim.keymap.set('t', '<C-w>h', '<C-\\><C-n><C-w>h', { desc = 'allow escaping terminal with standard window commands' })
 vim.keymap.set('t', '<C-w>j', '<C-\\><C-n><C-w>j', { desc = 'allow escaping terminal with standard window commands' })
@@ -912,14 +908,14 @@ vim.keymap.set('n', 'n', 'nzz', { desc = 'automatically center text when searchi
 vim.keymap.set('n', 'N', 'Nzz', { desc = 'automatically center text when searching' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'automatically center text when jumping' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'automatically center text when jumping' })
-vim.keymap.set('n', '<leader>cp', vim.cmd.Prettier, { desc = '[C]ode [P]rettier' })
-vim.keymap.set('n', '<leader>tn', vim.cmd.TestNearest, { desc = '[T]est [N]earest' })
-vim.keymap.set('n', '<leader>tf', vim.cmd.TestFile, { desc = '[T]est [F]ile' })
-vim.keymap.set('n', '<leader>ta', vim.cmd.TestSuite, { desc = '[T]est [a]ll' })
-vim.keymap.set('n', '<leader>tl', vim.cmd.TestLast, { desc = '[T]est [L]ast' })
-vim.keymap.set('n', '<leader>tv', vim.cmd.TestVist, { desc = '[T]est [V]isit' })
+-- vim.keymap.set('n', '<leader>cp', vim.cmd.Prettier, { desc = '[C]ode [P]rettier' })
+-- vim.keymap.set('n', '<leader>tn', vim.cmd.TestNearest, { desc = '[T]est [N]earest' })
+-- vim.keymap.set('n', '<leader>tf', vim.cmd.TestFile, { desc = '[T]est [F]ile' })
+-- vim.keymap.set('n', '<leader>ta', vim.cmd.TestSuite, { desc = '[T]est [a]ll' })
+-- vim.keymap.set('n', '<leader>tl', vim.cmd.TestLast, { desc = '[T]est [L]ast' })
+-- vim.keymap.set('n', '<leader>tv', vim.cmd.TestVist, { desc = '[T]est [V]isit' })
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
   expr = true,
-  replace_keycodes = false
+  replace_keycodes = false,
 })
 vim.g.copilot_no_tab_map = true
